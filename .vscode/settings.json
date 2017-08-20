@@ -1,0 +1,9 @@
+{
+  "files.associations": {
+    "*.rabl": "ruby",
+    "__locale": "cpp",
+    "string": "cpp",
+    "__split_buffer": "cpp",
+    "vector": "cpp"
+  }
+}
