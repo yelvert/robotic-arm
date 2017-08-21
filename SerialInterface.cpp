@@ -1,3 +1,6 @@
+#include <Arduino.h>
+#include <WString.h>
+#include "CommandInterface.h"
 #include "SerialInterface.h"
 
 void Arm::SerialInterface::setup () {
@@ -13,7 +16,7 @@ void Arm::SerialInterface::read () {
   if (Serial.available() > 0) {
     // read the incoming byte:
     char incomingByte = Serial.read();
-    if (incomingByte == COMMAND_TERMINATOR) {
+    if (incomingByte == Arm::CommandInterface::COMMAND_TERMINATOR) {
       executeCommand();
     } else {
       command += incomingByte;

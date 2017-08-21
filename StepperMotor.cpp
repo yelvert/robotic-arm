@@ -1,8 +1,8 @@
-#include "Arduino.h"
-#include "WString.h"
-#include "lib/vector.h"
-#include "lib/string_utils.h"
-#include "SerialInterface.h"
+#include <Arduino.h>
+#include <WString.h>
+#include "Vector.h"
+#include "StringUtils.h"
+#include "CommandInterface.h"
 #include "StepperMotor.h"
 
 Arm::StepperMotor::StepperMotor
@@ -14,7 +14,7 @@ Arm::StepperMotor::StepperMotor
   _stepsPerRotation(stepsPerRotation)
 {
     delta = micros();
-    stepInterval(1000);
+    _stepInterval = 1000;
     stepTimeout = delta + stepInterval();
 }
 
@@ -43,7 +43,8 @@ double Arm::StepperMotor::desiredRotation () { return _desiredRotation; }
 void Arm::StepperMotor::setup () {
   pinMode(stepPin(), OUTPUT);
   pinMode(dirPin(), OUTPUT);
-  Serial.println(name()+" setup");
+  Serial.print(name());
+  Serial.println(" setup");
 }
 
 void Arm::StepperMotor::loop (long _delta) {
@@ -62,14 +63,14 @@ void Arm::StepperMotor::executeCommand (String command) {
           if (part.length() > 1) {
             rotateTo(part.substring(1).toFloat());
           } else {
-            Serial.println(name()+" M"+currentRotation()+Arm::SerialInterface::COMMAND_TERMINATOR);
+            Serial.println(name()+" M"+currentRotation()+Arm::CommandInterface::COMMAND_TERMINATOR);
           }
           break;
         case 'S':
           if (part.length() > 1) {
             stepInterval(part.substring(1).toInt());
           } else {
-            Serial.println(name()+" S"+stepInterval()+Arm::SerialInterface::COMMAND_TERMINATOR);
+            Serial.println(name()+" S"+stepInterval()+Arm::CommandInterface::COMMAND_TERMINATOR);
           }
           break;
         case 'R':

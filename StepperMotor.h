@@ -1,6 +1,8 @@
 #ifndef StepperMotor_h
 #define StepperMotor_h
 
+#include <WString.h>
+#include "Vector.h"
 #include "CommandInterface.h"
 
 namespace Arm {
@@ -10,7 +12,7 @@ namespace Arm {
     public:
       enum class DIRECTION { FORWARD = 1, BACKWARD = -1 };
 
-      static const int MINIMUM_STEP_INTERVAL = 350;
+      static const long MINIMUM_STEP_INTERVAL = 350;
 
       StepperMotor (String name, int stepPin, int dirPin, int stepsPerRotation);
 
@@ -20,7 +22,7 @@ namespace Arm {
 
       void setup ();
 
-      void loop (long delta);
+      void loop (long _delta);
 
       String name () const;
 
