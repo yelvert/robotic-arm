@@ -23,6 +23,7 @@ namespace Arm {
       void read ();
       void executeCommand ();
       void executeCommand (String _command);
+      void addArticulation (Arm::StepperMotor*);
 
   };
 }

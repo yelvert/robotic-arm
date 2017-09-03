@@ -11,9 +11,6 @@ Arm::Controller::Controller () :
   Arm::CommandInterface()
 {
   delta = micros();
-  articulations.push_back( new Arm::StepperMotor ("BaseYaw", 2, 3, 200) );
-  articulations.push_back( new Arm::StepperMotor ("BasePitch", 4, 5, 200) );
-  articulations.push_back( new Arm::StepperMotor ("Elbow", 6, 7, 200) );
 }
 
 void Arm::Controller::setup () {
@@ -53,4 +50,8 @@ void Arm::Controller::executeCommand (String command) {
       }
     }
   }
+}
+
+void Arm::Controller::addArticulation (Arm::StepperMotor* articulation) {
+  articulations.push_back( articulation );
 }
