@@ -4,13 +4,13 @@
             "name": "Mac",
             "includePath": [
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
-                "${workspaceRoot}"
+                "${workspaceRoot}/arduino"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": false,
                 "path": [
                     "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
-                    "${workspaceRoot}"
+                    "${workspaceRoot}/arduino"
                 ]
             },
             "intelliSenseMode": "clang-x64"
