@@ -1,0 +1,16 @@
+{
+  "name": "arm",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Taylor Yelverton",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "serialport": "https://github.com/EmergingTechnologyAdvisors/node-serialport.git",
+    "socket.io": "^2.0.3"
+  }
+}

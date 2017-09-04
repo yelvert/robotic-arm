@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+
+    <ul id="messages"></ul>
+
+    <div id="actions">
+      <input id="cmd" />
+      <button id="sendCmd" type="button">Send</button>
+    </div>
+
+  </body>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      // Initialize Variables
+      const socket = io();
+
+      const $messages = $('#messages');
+      const $cmd = $('#cmd');
+      const $sendCmd = $('#sendCmd');
+
+      // Socket.io listeners
+      socket.on('receive', (msg) => {
+        displayMessage('Recv: '+msg);
+      });
+
+      socket.on('close', () => {
+        displayMessage('Lost connection to device.');
+      });
+
+      function sendCmd () {
+        sendData($cmd.val());
+        $cmd.val('').focus();
+      }
+
+      $sendCmd.click(sendCmd);
+      $cmd.keypress(ev => {
+        if (ev.keyCode == 13) sendCmd();
+      });
+
+      // Functions
+      function sendData(data) {
+        socket.send(data);
+        displayMessage('Send: '+data);
+      }
+
+      function displayMessage(msg) {
+        $messages.append($('<li>').text(msg));
+      }
+    });
+  </script>
+</html>
