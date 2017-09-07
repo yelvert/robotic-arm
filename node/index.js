@@ -71,3 +71,15 @@ serial.on('close', () => {
   console.log('Serial port disconnected.');
   io.sockets.emit('receive', 'disconnected!');
 });
+
+function tick () {
+  diff = process.hrtime(tick.last);
+  console.log(`Benchmark took ${
+    (diff[0] * 1e6) + (diff[1] / 1e3)
+  } microseconds`);
+  tick.last = process.hrtime();
+  setImmediate(tick);
+}
+tick.last = process.hrtime();
+tick();
+setTimeout(function () {console.log('EXIT');process.exit()}, 3000);
