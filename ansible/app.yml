@@ -1,0 +1,5 @@
+- name: Set up Arm Control
+  hosts: all
+  gather_facts: true
+  roles:
+    - arm_control

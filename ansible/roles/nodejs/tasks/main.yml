@@ -1,0 +1,9 @@
+- name: Add node to apt
+  shell: curl -sL https://deb.nodesource.com/setup_8.x | -E bash -
+  become: yes
+
+- name: Install node
+  apt:
+    name: nodejs
+    state: latest
+  become: yes

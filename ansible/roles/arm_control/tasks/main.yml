@@ -1,0 +1,23 @@
+- name: Install ArmControl system dependancies
+  apt:
+    name: '{{ item }}'
+    state: latest
+  become: yes
+  with_items:
+    - git
+    - build-essential
+
+- name: Clone RoboticArm repo
+  git:
+    repo: 'https://github.com/yelvert/robotic-arm.git'
+    dest: ~/robotic-arm
+    update: yes
+
+- name: Add pi user to groups
+  user:
+    name: pi
+    groups: '{{ item }}'
+    append: yes
+  with_items:
+    - gpio
+  become: yes
