@@ -117,7 +117,7 @@ class StepperMotor {
   [stepFlop] () {
     this.log('flop');
     rpio.write(this.stepPin, rpio.LOW);
-    this[currentRotation] += this.degreesPerStep*(this.direction ? 1 : -1);
+    this[currentRotation] += this.degreesPerStep*(this.direction === this.constructor.FORWARD ? 1 : -1);
   }
 
   inspect () { return `StepperMotor ${JSON.stringify(inspectInstance(this))}` }
